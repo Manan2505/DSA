@@ -7,3 +7,4 @@
 7.	constructor is a special type of function that runs when an object is created.
 8.	This keyword 
 9.	Primitives are not objects so they are not stored in heap memory. They are stored in stack memory
+10. In java there is no pass by reference only pass by value.
