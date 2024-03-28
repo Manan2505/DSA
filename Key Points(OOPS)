@@ -8,3 +8,19 @@
 8.	This keyword 
 9.	Primitives are not objects so they are not stored in heap memory. They are stored in stack memory
 10. In java there is no pass by reference only pass by value.
+11. Always initialize the final variables.
+12. Final gurantee the immutability only for primitives datatypes, for non-primitives we can change the value of objects.(see code)
+public static void main(String[] args) {
+   final Demo name=new Demo();
+  name.value=8;
+    System.out.println(name.value);
+  }
+}
+class Demo{
+  int value=3;
+}
+
+
+13. Finalizer is used to determine what actions to perform when object is destroyed. Finalizer can be added to the class using finalize method.
+Any object of particular class is destroyed, the finalize method gets called.(you can’t use finalize method manually, it is called automatically)
+
