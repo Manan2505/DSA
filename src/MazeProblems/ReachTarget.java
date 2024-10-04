@@ -1,17 +1,24 @@
 package MazeProblems;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class ReachTarget {
-    public static void steps(int row,int col,String str){
+    public static ArrayList<String> steps(int row, int col, String str){
         if(row==2 && col==2){
-            System.out.println(str);
-            return;
+           ArrayList<String>list=new ArrayList<>();
+           list.add(str);
+            return list;
         }
+        ArrayList<String>list=new ArrayList<>();
+
         if(row<2){
-            steps(row+1,col,str+"D");
+            list.addAll(steps(row+1,col,str+"D"));
         }
         if(col<2){
-            steps(row,col+1,str+"R");
+            list.addAll(steps(row,col+1,str+"R"));
         }
+        return list;
     }
     public static int count(int row,int col){
         if(row==2 || col==2){
@@ -22,7 +29,7 @@ public class ReachTarget {
         return left+right;
     }
     public static void main(String[] args) {
-        steps(0,0,"");
+        System.out.println(steps(0,0,""));
         System.out.println(count(0,0));
     }
 }
