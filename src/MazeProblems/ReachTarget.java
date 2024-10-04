@@ -11,7 +11,10 @@ public class ReachTarget {
             return list;
         }
         ArrayList<String>list=new ArrayList<>();
+        if(row<2 && col<2){
+            list.addAll(steps(row+1,col+1,str+"S")); // for diagonal movement
 
+        }
         if(row<2){
             list.addAll(steps(row+1,col,str+"D"));
         }
@@ -24,11 +27,14 @@ public class ReachTarget {
         if(row==2 || col==2){
             return 1;
         }
-        int left=count(row+1,col);
+        int down=count(row+1,col);
         int right=count(row,col+1);
-        return left+right;
+        int slant=count(row+1,col+1);
+        return down+right+slant;
     }
+
     public static void main(String[] args) {
+
         System.out.println(steps(0,0,""));
         System.out.println(count(0,0));
     }
