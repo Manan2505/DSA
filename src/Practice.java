@@ -1,39 +1,31 @@
-import java.util.*;
+import java.util.ArrayList;
+
 public class Practice {
-    public static Stack<Integer> sort(Stack<Integer> s) {
-        // add code here.
-        ArrayDeque<Integer>deque=new ArrayDeque<>();
-        Stack<Integer>st=new Stack<>();
-        while(!s.isEmpty()){
-          if(st.isEmpty()){
-              st.push(s.pop());
-          }
-          else if(!st.isEmpty()&&s.peek()>=st.peek()){
-              st.push(s.pop());
-          }
-          else if(!st.isEmpty()&& s.peek()<st.peek()){
-              while(!st.isEmpty()&&s.peek()<st.peek()){
-                  deque.add(st.pop());
-              }
-              st.push(s.pop());
-              while(!deque.isEmpty()){
-                  st.push(deque.pollLast());
-              }
-          }
+    public static int steps(int row,int col){
+        if(row==2 || col==2) {
+            return 1;
         }
-        if(!deque.isEmpty()){
-            st.push(deque.pollLast());
-        }
-        return st;
+        int a=steps(row+1,col);
+        int b=steps(row,col+1);
+        return a+b;
     }
 
+    public static ArrayList<String> path(int row,int col,String path){
+        ArrayList<String>list=new ArrayList<>();
+        if(row==2 && col==2){
+            list.add(path);
+            return list;
+        }
+        if(row<2){
+            list.addAll(path(row+1,col,path+"D"));
+        }
+        if(col<2){
+           list.addAll( path(row,col+1,path+"R"));
+        }
+        return list;
+    }
     public static void main(String[] args) {
-        Stack<Integer>s=new Stack<>();
-        s.push(3);
-        s.push(2);
-        s.push(1);
-        s.push(7);
-        System.out.println(s);
-        System.out.println(sort(s));
+        System.out.println(steps(0,0));
+        System.out.println( path(0,0,""));
     }
 }
