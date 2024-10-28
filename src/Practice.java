@@ -1,31 +1,40 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Practice {
-    public static int steps(int row,int col){
-        if(row==2 || col==2) {
-            return 1;
+    static HashMap<Character,Integer>map=new HashMap<>();
+    static HashSet<Character>set=new HashSet<>();
+    public static String valueCount(String num){
+        String ans="";
+        for(int i=0; i<num.length(); i++){
+            if(map.containsKey(num.charAt(i))){
+                map.put(num.charAt(i),map.get(num.charAt(i))+1);
+            }
+            map.put(num.charAt(i),1);
         }
-        int a=steps(row+1,col);
-        int b=steps(row,col+1);
-        return a+b;
-    }
+        System.out.println(map);
+        for(int i=0; i<num.length(); i++){
+            set.add(num.charAt(i));
+        }
+        for(int i=0; i<num.length(); i++){
+            if(map.containsKey(num.charAt(i))&& set.contains(num.charAt(i))){
+                ans+=map.get(num.charAt(i))+""+num.charAt(i);
+                set.remove(num.charAt(i));
+            }
+        }
+        return ans;
 
-    public static ArrayList<String> path(int row,int col,String path){
-        ArrayList<String>list=new ArrayList<>();
-        if(row==2 && col==2){
-            list.add(path);
-            return list;
+    }
+    public static String countAndSay(int n) {
+        int i=2;
+        String num="1";
+        while(i<=n){
+            System.out.println(num);
+            num=valueCount(num);
+            i++;
         }
-        if(row<2){
-            list.addAll(path(row+1,col,path+"D"));
-        }
-        if(col<2){
-           list.addAll( path(row,col+1,path+"R"));
-        }
-        return list;
+        return num;
     }
     public static void main(String[] args) {
-        System.out.println(steps(0,0));
-        System.out.println( path(0,0,""));
+        System.out.println(countAndSay(4));
     }
 }
