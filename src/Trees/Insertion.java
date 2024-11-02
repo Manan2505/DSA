@@ -43,11 +43,31 @@ public class Insertion {
         inorder(node.right);
 
     }
+
+    public static void preorder(Node node){
+        if(node==null){
+            return;
+        }
+        System.out.print(node.value +" ");
+        preorder(node.left);
+        preorder(node.right);
+
+    }
+
+    public static void postorder(Node node){
+        if(node==null){
+            return;
+        }
+        postorder(node.left);
+        postorder(node.right);
+        System.out.print(node.value +" ");
+
+    }
     public static void display(Node node){
         if(node==null){
             return;
         }
-        System.out.println(node.value);
+        System.out.print(node.value +" ");
         display(node.left);
         display(node.right);
     }
@@ -55,5 +75,9 @@ public class Insertion {
         Scanner sc=new Scanner(System.in);
         Insertion i=new Insertion(1,sc);
         inorder(root);
-    }
+        System.out.println("preorder ");
+        preorder(root);
+        System.out.println("postorder");
+        postorder(root);
+   }
 }
